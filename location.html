@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      type="module"
+      src="https://res.cloudinary.com/milsat-technologies-limited/raw/upload/v1734534024/Milsat%20geo-component/geo_component_ddrwrv.js"
+    ></script>
+
+    <link
+      rel="stylesheet"
+      href="https://res.cloudinary.com/milsat-technologies-limited/raw/upload/v1734534024/Milsat%20geo-component/geo_component_nhudum.css"
+    />
+    <title>Geo Component Demo</title>
+    <script type="module" src="/src/components/index.ts"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: skyblue;
+      }
+
+      .npc-text-button {
+        font-size: 40px;
+      }
+
+      .npcs {
+        width: 400px;
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+      }
+      
+
+      npc-building-data::part(search-label) {
+        display: none !important;
+      }
+
+      npc-building-data::part(dropdown-menu) {
+        width: 400px;
+        height: 200px;
+        background-color: black;
+      }
+    </style>
+    <script>
+      const handleSelect = (value) => {
+        console.log("Selected Value:", value);
+
+        const span = document.getElementById("selectedItem");
+
+        span.textContent = value?.value;
+      };
+
+      window.addEventListener("load", () => {
+        const npc = document.querySelector("npc-building-data");
+        npc.onChange = handleSelect;
+      });
+    </script>
+  </head>
+
+  <body>
+    <div class="npcs">
+      <npc-building-data
+        search_property="BLD_ADDRS"
+        display_property="LGA_NAME"
+        placeholder="Search building data"
+        label="NPC Building"
+        api-key="CfBKPXb04/DyV63EI4Db"
+        onChange="handleSelect()"
+      >
+      </npc-building-data>
+      <span id="selectedItem"></span>
+    </div>
+  </body>
+</html>
